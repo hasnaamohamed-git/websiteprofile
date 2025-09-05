@@ -13,15 +13,23 @@ document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', 
     navMenu.classList.remove('active');
 }));
 
-// Smooth scrolling for navigation links
+// Enhanced smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+            // Close mobile menu if open
+            const navMenu = document.querySelector('.nav-menu');
+            const hamburger = document.querySelector('.hamburger');
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+            
+            // Smooth scroll with offset for fixed navbar
+            const offsetTop = target.offsetTop - 80;
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
             });
         }
     });
@@ -285,29 +293,10 @@ window.addEventListener('load', () => {
     document.body.classList.add('loaded');
 });
 
-// Enhanced particle system
-function createParticles() {
-    const particlesContainer = document.querySelector('.particles');
-    if (!particlesContainer) return;
-    
-    // Create additional particles dynamically
-    for (let i = 0; i < 10; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.cssText = `
-            width: ${Math.random() * 4 + 2}px;
-            height: ${Math.random() * 4 + 2}px;
-            top: ${Math.random() * 100}%;
-            left: ${Math.random() * 100}%;
-            animation-delay: ${Math.random() * 6}s;
-            animation-duration: ${Math.random() * 4 + 4}s;
-        `;
-        particlesContainer.appendChild(particle);
-    }
-}
-
-// Initialize particles
-document.addEventListener('DOMContentLoaded', createParticles);
+// Simplified initialization
+document.addEventListener('DOMContentLoaded', () => {
+    // Initialize any needed functionality
+});
 
 // Enhanced scroll effects
 window.addEventListener('scroll', () => {
