@@ -104,6 +104,7 @@ body {
     color: white;
     position: relative;
     overflow: hidden;
+    border: 20px solid #FF69B4;
 }
 
 .hero::before {
